@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+
+    <pre>
+    app.message = 'change!'
+    </pre>
+  </div>
+
+  <hr>
+
+  <div id="app-2">
+    <span v-bind:title="message">
+      Hover your mouse over me for a few seconds
+      to see my dynamically bound title!
+    </span>
+    <pre>
+    v-bind:title="message"
+    app2.message = 'changeee!'
+    </pre>
+  </div>
+
+  <hr>
+
+  <div id="app-3">
+    <span v-if="seen">Now you see me</span>
+    <pre>
+    v-if="seen"
+    app3.seen = false
+    </pre>
+  </div>
+
+  <hr>
+
+  <div id="app-4">
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+    <pre>
+    v-for="todo in todos"
+    app4.todos.push({ text: 'New item' })
+    </pre>
+  </div>
+
+  <hr>
+
+  <div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+    <pre>
+    v-on:click="reverseMessage"
+    methods:
+    </pre>
+  </div>
+
+  <hr>
+
+  <div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+    <pre>
+    v-model="message"
+    </pre>
+  </div>
+
+  <hr>
+
+  <!--
+  <div id="app-7">
+    <ol>
+      todos 配列にある各 todo に対して todo-item コンポーネントのインスタンスを作成する
+      <todo-item></todo-item>
+      <todo-item></todo-item>
+    </ol>
+  </div>
+  -->
+  <div id="app-7">
+    <ol>
+      <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    </ol>
+    <pre>
+        各 todo-item の内容を表す todo オブジェクトを与えます。
+        これにより内容は動的に変化します。
+        また後述する "key" を各コンポーネントに提供する必要があります。
+
+        v-for="item in groceryList" v-bind:todo="item"
+        props: ['todo']
+        ループ中のitemがtodoという名前で参照刺され、templateのなかでtodoで参照される
+
+
+        app7.groceryList.push({ text: 'New todo' })
+
+    </pre>
+  </div>
+
+  <hr>
+
+<!--
+   - コンポーネントを駆使した(架空の)アプリケーションのテンプレートの例
+   -->
+  <div id="app-8">
+    <app-nav></app-nav>
+    <app-view>
+      <app-sidebar></app-sidebar>
+      <app-content></app-content>
+    </app-view>
+  </div>
+
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        message: 'You loaded this page on ' + new Date().toLocaleString()
+      }
+    })
+
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        seen: true
+      }
+    })
+
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        todos: [
+          { text: 'Learn JavaScript' },
+          { text: 'Learn Vue' },
+          { text: 'Build something awesome' }
+        ]
+      }
+    })
+
+   var app5 = new Vue({
+      el: '#app-5',
+      data: {
+        message: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+
+    // todo-item と呼ばれる新しいコンポーネントを定義
+    // app7にVueインスタンスを入れる前に、先にVue.componentを書いておく必要があった
+    /*
+    Vue.component('todo-item', {
+      template: '<li>This is a todo</li>'
+    })
+    var app7 = new Vue({
+      el: '#app-7'
+    })
+    */
+
+    Vue.component('todo-item', {
+      // todo-item コンポーネントはカスタム属性のような "プロパティ" で受け取ります。
+      // このプロパティは todo と呼ばれます。
+      props: ['todo'],
+      template: '<li>{{ todo.text }}</li>'
+    })
+
+    var app7 = new Vue({
+      el: '#app-7',
+      data: {
+        groceryList: [
+          { id: 0, text: 'Vegetables' },
+          { id: 1, text: 'Cheese' },
+          { id: 2, text: 'Whatever else humans are supposed to eat' }
+        ]
+      }
+    })
+
+
+  </script>
+</body>
+</html>
