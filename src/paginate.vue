@@ -18,7 +18,8 @@
   export default {
     data() {
       return {
-        items: ['Item One',
+        items: [
+          'Item One',
           'Item Two',
           'Item Three',
           'Item Four',

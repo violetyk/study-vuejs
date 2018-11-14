@@ -5,10 +5,10 @@
   "dependencies": {
     "vue": "^2.5.17",
     "vue-loader": "^15.4.2",
+    "vue-paginate": "^3.6.0",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.25.1",
-    "webpack-dev-server": "^3.1.10",
-    "vue-paginate": "^3.6.0"
+    "webpack-dev-server": "^3.1.10"
   },
   "devDependencies": {
     "webpack-cli": "^3.1.2"
