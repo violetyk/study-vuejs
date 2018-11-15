@@ -45,6 +45,9 @@ yarn start # package.jsonのscriptsのstartで起動コマンド書いてるの�
   - https://github.com/vuejs/awesome-vue
 
 ## vue.jsをTypeScriptで書く
+```
+./vue-ts-practice/
+```
 - やってみる
   - https://qiita.com/nrslib/items/be90cc19fa3122266fd7
 ```
@@ -66,7 +69,7 @@ Vue CLI v3.1.3
 ```
 ```
 cd vue-ts-practice
-yarn serve
+yarn serve # ブラウザリロードすればソースの修正が反映される
 ```
 - vue-cliで色々入ったけど、vue.jsをTypeScriptで書くためのものはどれ？
   - https://mae.chab.in/archives/60167
