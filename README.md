@@ -82,3 +82,29 @@ yarn serve
     - 「vue-property-decoratorで用意されているもの」は デコレーター で書く
     - 「デコレータを使って書けないもの」は @component内にそのまま 書く
     - script要素に lang="ts"属性 をつける
+
+
+## Vue.js + TypeScriptやってて分からないところ
+- vuejsのドキュメント見るとJSでかいてある
+- vuejs + TypeScriptで書くためのハンズオン的なページは@Emitとか@Propでかいてある
+- 書き方がわからないところでさがす... ←vuejsで書いてある！
+- TypeScriptの@Propとか@Emitをつかってない書き方に変換できない ←分からない
+
+## @なんとかを理解していく
+- `@Prop` とか `@Emit` とかは vue-property-decoratorがやってくれてる
+  - https://github.com/kaorun343/vue-property-decorator
+  - これを読むと中で何やってるか書いてある
+  - [vue-class-component](https://github.com/vuejs/vue-class-component) のラッパーになっている
+- propとか$emitとか、そもそも$とかってなに？
+  - https://qiita.com/hosomichi/items/ebbfcc3565bcd27f344c
+- propsは親コンポーネントから受け渡される。
+```
+import Component from 'vue-class-component'
+
+@Component({
+  props: [
+    'current',
+    'lastPage'
+  ]
+})
+```
